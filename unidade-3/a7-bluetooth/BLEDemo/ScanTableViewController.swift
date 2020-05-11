@@ -20,14 +20,16 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //mostra a lista e já scan por bluetooth
         scanBLEDevices()
     }    
     
-    // MARK: - Table view data source
-    
+    // Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    //controle de lista
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -49,24 +51,25 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
         manager?.connect(peripheral, options: nil)
     }
     
-    // MARK: BLE Scanning
+    // Procura do bluetooth
     func scanBLEDevices() {
         //manager?.scanForPeripherals(withServices: [CBUUID.init(string: parentView!.BLEService)], options: nil)
         
-        //if you pass nil in the first parameter, then scanForPeriperals will look for any devices.
+        //se vc pasar nullo como primeiro parametro o scanForPeriperals vai retornar qualquer dispositivo
         manager?.scanForPeripherals(withServices: nil, options: nil)
         
-        //stop scanning after 3 seconds
+        //faz procura por 3 segundos
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.stopScanForBLEDevices()
         }
     }
     
+    //para de buscar novos dispositivos
     func stopScanForBLEDevices() {
         manager?.stopScan()
     }
     
-    // MARK: - CBCentralManagerDelegate Methods
+    //verifica se tem dispositivo novo para add a lista de dispositivos encontrados
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if(!peripherals.contains(peripheral)) {
             peripherals.append(peripheral)
@@ -75,22 +78,14 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
         self.tableView.reloadData()
     }
     
-//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : AnyObject], rssi RSSI: NSNumber) {
-//        
-//        if(!peripherals.contains(peripheral)) {
-//            peripherals.append(peripheral)
-//        }
-//        
-//        self.tableView.reloadData()
-//    }
-    
+    //printa o status atual da central caso for atualizada
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print(central.state)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
-        //pass reference to connected peripheral to parent view
+        //passa a referencia para se conectar no dispositivo
         parentView?.mainPeripheral = peripheral
         peripheral.delegate = parentView
         peripheral.discoverServices(nil)
@@ -106,6 +101,7 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
         print("Connected to " +  peripheral.name!)
     }
     
+    //printa se da erro na central
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print(error!)
     }
