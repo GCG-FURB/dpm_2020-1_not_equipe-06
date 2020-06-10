@@ -16,6 +16,7 @@
 		65875B10247F365E00495714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65875B0F247F365E00495714 /* Assets.xcassets */; };
 		65875B13247F365E00495714 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65875B11247F365E00495714 /* LaunchScreen.storyboard */; };
 		65875B1D247F3E1300495714 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65875B1C247F3E1300495714 /* ImageViewController.swift */; };
+		65A6C5FE2488555400B02F6F /* Registro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A6C5FD2488555400B02F6F /* Registro.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		65875B12247F365E00495714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65875B14247F365E00495714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65875B1C247F3E1300495714 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		65A6C5FD2488555400B02F6F /* Registro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		65875B00247F365600495714 /* PyRelio */ = {
 			isa = PBXGroup;
 			children = (
+				65A6C5FC2488550C00B02F6F /* Models */,
 				65875B01247F365600495714 /* AppDelegate.swift */,
 				65875B03247F365600495714 /* SceneDelegate.swift */,
 				65875B05247F365600495714 /* ListImagesViewController.swift */,
@@ -74,6 +77,14 @@
 				65875B1C247F3E1300495714 /* ImageViewController.swift */,
 			);
 			path = PyRelio;
+			sourceTree = "<group>";
+		};
+		65A6C5FC2488550C00B02F6F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				65A6C5FD2488555400B02F6F /* Registro.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +162,7 @@
 				65875B06247F365600495714 /* ListImagesViewController.swift in Sources */,
 				65875B02247F365600495714 /* AppDelegate.swift in Sources */,
 				65875B04247F365600495714 /* SceneDelegate.swift in Sources */,
+				65A6C5FE2488555400B02F6F /* Registro.swift in Sources */,
 				65875B1D247F3E1300495714 /* ImageViewController.swift in Sources */,
 				65875B0E247F365600495714 /* PyRelio.xcdatamodeld in Sources */,
 			);
@@ -299,6 +311,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5XPW58BGHB;
 				INFOPLIST_FILE = PyRelio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,6 +330,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5XPW58BGHB;
 				INFOPLIST_FILE = PyRelio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
