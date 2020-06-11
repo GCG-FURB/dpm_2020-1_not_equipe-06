@@ -72,6 +72,7 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate & U
         let r = Registro();
         r.nome = tf_nome.text;
         r.descricao = tf_descricao.text;
+        ListImagesViewController.lista.append(r);
         
         let imageData = myImg.image!.pngData()
         let compresedImage = UIImage(data: imageData!)
@@ -79,10 +80,21 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate & U
         
         r.imagem = compresedImage;
         
-        let alert = UIAlertController(title: "Ok", message: "Sua image foi salva", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "Ok", message: "Sua image foi salva", preferredStyle: .alert)
+//        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//        alert.addAction(okAction)
+//        self.present(alert, animated: true, completion: nil)
+        
+//        DispatchQueue.main.async {
+//            self.dismiss(animated: true, completion: nil)
+//        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vcb = storyboard.instantiateViewController(withIdentifier: "ListaRegistros") as! UIViewController
+        
+        DispatchQueue.main.async {
+            self.present(vcb, animated: true, completion: nil)
+        }
     }
     
 }

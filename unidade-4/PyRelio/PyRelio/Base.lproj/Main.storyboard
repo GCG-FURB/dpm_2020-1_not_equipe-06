@@ -10,7 +10,7 @@
         <!--Imagens-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="PyRelio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListaRegistros" id="9pv-A4-QxB" customClass="ListImagesViewController" customModule="PyRelio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="4Vx-4b-sBs">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="4Vx-4b-sBs" customClass="tableRegistroClass" customModule="PyRelio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Vx-4b-sBs" id="Q5d-ys-BVY">
@@ -46,8 +46,16 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="img" destination="dJL-Fo-bS2" id="M6O-2e-PAz"/>
+                                            <outlet property="lb_descricao" destination="kig-Nq-vN0" id="0y7-Oi-8hw"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="R91-S2-wns"/>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="Qc5-ma-tPj"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="PyRelio" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
                                 <rect key="frame" x="20" y="72" width="115" height="43"/>
@@ -63,7 +71,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="mlQ-ex-ikV" kind="popoverPresentation" popoverAnchorView="UrS-zh-y9t" id="7X1-SJ-5I1">
+                                    <segue destination="mlQ-ex-ikV" kind="popoverPresentation" destinationCreationSelector="ida:" popoverAnchorView="UrS-zh-y9t" id="7X1-SJ-5I1">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -73,6 +81,9 @@
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Imagens" image="photo" catalog="system" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="tableRegistros" destination="wkE-wV-6FX" id="pSY-hs-f4U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
