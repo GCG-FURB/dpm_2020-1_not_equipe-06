@@ -31,41 +31,50 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate & U
     }
     
     func abrirCaptura() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera)
-        {
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            imagePicker.allowsEditing = false
-            self.present(imagePicker,animated: true, completion: nil)
-        } else {
-            if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-                imagePicker.delegate = self
-                imagePicker.sourceType = .savedPhotosAlbum
-                imagePicker.allowsEditing = false
-                present(imagePicker, animated: true, completion: nil)
-            }
-        }
+         let image = UIImagePickerController()
+
+               image.delegate = self
+
+        image.sourceType = UIImagePickerController.SourceType.camera
+
+               image.allowsEditing = false
+
+               
+
+               self.present(image, animated: true){
+
+                   
+
+               }
     }
     
     //camera
-//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//            if let pickedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
-//                myImg.contentMode = .scaleToFill
-//                myImg.image = pickedImage
-//            }
-//            picker.dismiss(animated: true, completion: nil)
-//    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[.originalImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
+        if let image = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
+
+            myImg.image = image
+
+        } else {
+
+            //error
+
         }
-        myImg.image = image;
+
+        self.dismiss(animated: true, completion: nil)
+
     }
     
-    @objc func imagePickerController(_ picker: UIImagePickerController, pickedImage: UIImage?) {
-    }
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        picker.dismiss(animated: true, completion: nil)
+//        guard let image = info[.originalImage] as? UIImage else {
+//            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+//        }
+//        myImg.image = image;
+//    }
+//
+//    @objc func imagePickerController(_ picker: UIImagePickerController, pickedImage: UIImage?) {
+//    }
     
     func salvarRegistro() {
         
