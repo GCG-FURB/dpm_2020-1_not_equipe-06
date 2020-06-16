@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ImageViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
@@ -89,6 +90,8 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate & U
         
         r.imagem = compresedImage;
         
+        self.persisteRegistro(nome: r.nome,descricao: r.descricao);
+        
 //        let alert = UIAlertController(title: "Ok", message: "Sua image foi salva", preferredStyle: .alert)
 //        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
 //        alert.addAction(okAction)
@@ -104,6 +107,45 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate & U
         DispatchQueue.main.async {
             self.present(vcb, animated: true, completion: nil)
         }
+    }
+    
+    func persisteRegistro(nome: String!, descricao: String!) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "RegistroModel", in: context)
+        let nnewEntity = NSManagedObject(entity: entity!, insertInto: context)
+        
+        nnewEntity.setValue(nome, forKey: "nome")
+        nnewEntity.setValue(descricao, forKey: "descricao")
+        
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            print("Failed")
+        }
+    }
+    
+    func loadRegistro() -> (String, String, String) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RegistroModel")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject]
+            {
+                let nome = data.value(forKey: "nome") as! String
+                let descricao = data.value(forKey: "descricao") as! String
+                
+                let r = Registro();
+                r.nome = nome;
+                r.descricao = descricao;
+                ListImagesViewController.lista.append(r);
+                
+            }
+        } catch {
+            print("Failed")
+        }
+        return (nome: "", email: "", senha: "")
     }
     
 }
