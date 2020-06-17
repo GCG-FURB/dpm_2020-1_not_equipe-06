@@ -20,7 +20,7 @@ class CameraViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+      //  self.navigationController?.setNavigationBarHidden(true, animated: true)
         previewView.delegate = self
     }
     
@@ -77,11 +77,11 @@ class CameraViewController: UIViewController {
         }
     }
     
-    @IBAction func snap(_ sender: Any) {
+    @IBAction func capture(_ sender: Any) {
         let currentFrame = previewView.snapshot()
-      /*  let vc = self.storyboard?.instantiateViewController(identifier: "Profile") as! CatProfileViewController
-        vc.catImage = currentFrame
-        self.navigationController?.pushViewController(vc, animated: true)*/
+        let vc = self.storyboard?.instantiateViewController(identifier: "Profile") as! ProfileViewController
+        vc.animalImage = currentFrame
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func faceFrame(from boundingBox: CGRect) -> CGRect {
