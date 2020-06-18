@@ -9,6 +9,7 @@
 import UIKit
 import VisionKit
 import Vision
+import CoreData
 
 class ProfileViewController: UIViewController, VNDocumentCameraViewControllerDelegate {
 
@@ -42,6 +43,8 @@ class ProfileViewController: UIViewController, VNDocumentCameraViewControllerDel
             textRecognitionRequest.usesLanguageCorrection = false
             textRecognitionRequest.customWords = ["@gmail.com", "@outlook.com", "@yahoo.com", "@icloud.com"]
         }
+    
+    
         
         @IBAction func scanDocument(_ sender: Any) {
             // Use VisionKit to scan business cards
@@ -61,5 +64,45 @@ class ProfileViewController: UIViewController, VNDocumentCameraViewControllerDel
             controller.dismiss(animated: true)
         }
 
-
+    @IBAction func salvarRegistro(_ sender: Any) {
+        let full = recognizedText.components(separatedBy: ",")
+        
+        let r = Registro();
+        r.nome = full[0];
+        r.descricao = full[1];
+        ListImagesViewController.lista.append(r);
+        
+        let imageData = animalImage.pngData()
+        let compresedImage = UIImage(data: imageData!)
+        UIImageWriteToSavedPhotosAlbum(compresedImage!, nil, nil, nil)
+        
+        r.imagem = compresedImage;
+        
+        self.persisteRegistro(nome: r.nome,descricao: r.descricao);
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vcb = storyboard.instantiateViewController(withIdentifier: "ListaRegistros")
+        
+        DispatchQueue.main.async {
+            self.present(vcb, animated: true, completion: nil)
+        }
+    }
+    
+    func persisteRegistro(nome: String!, descricao: String!) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "RegistroModel", in: context)
+        let nnewEntity = NSManagedObject(entity: entity!, insertInto: context)
+        
+        nnewEntity.setValue(nome, forKey: "nome")
+        nnewEntity.setValue(descricao, forKey: "descricao")
+        nnewEntity.setValue(animalImage.pngData(), forKey: "img")
+        
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            print("Failed")
+        }
+    }
+    
 }

@@ -50,14 +50,16 @@ class CameraViewController: UIViewController {
                         self.rectangleView = UIView(frame: CGRect(x: results.boundingBox.minX * self.previewView.frame.width, y: results.boundingBox.minY * self.previewView.frame.height, width: results.boundingBox.width * self.previewView.frame.width, height: results.boundingBox.height * self.previewView.frame.height))
                         
                             // valida qual o animal identificado
-                            if animal.identifier == "Cat" {
-                                self.emojiLabel.text = "😸"
-                            } else {
-                                self.emojiLabel.text = "🐶"
+                            if animal.confidence > 0.8 {
+                                if animal.identifier == "Cat" {
+                                    self.emojiLabel.text = "😸 " + String(animal.confidence * 100) + "%"
+                                } else {
+                                    self.emojiLabel.text = "🐶 " + String(animal.confidence * 100) + "%"
+                                }
                             }
                             
                             // definições do emoji
-                           self.emojiLabel.font = UIFont.systemFont(ofSize: 70)
+                           self.emojiLabel.font = UIFont.systemFont(ofSize: 40)
                            self.emojiLabel.frame = CGRect(x: 0, y: 0, width: self.rectangleView.frame.width, height: self.rectangleView.frame.height)
                         
                            self.rectangleView.addSubview(self.emojiLabel)
@@ -79,9 +81,14 @@ class CameraViewController: UIViewController {
     
     @IBAction func capture(_ sender: Any) {
         let currentFrame = previewView.snapshot()
-        let vc = self.storyboard?.instantiateViewController(identifier: "Profile") as! ProfileViewController
-        vc.animalImage = currentFrame
-        self.navigationController?.pushViewController(vc, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vcb = storyboard.instantiateViewController(withIdentifier: "Profile")
+        (vcb as! ProfileViewController).animalImage = currentFrame
+        
+        DispatchQueue.main.async {
+            self.present(vcb, animated: true, completion: nil)
+        }
+        
     }
     
     private func faceFrame(from boundingBox: CGRect) -> CGRect {

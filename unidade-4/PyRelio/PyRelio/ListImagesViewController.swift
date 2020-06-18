@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class tableRegistroClass: UITableViewCell {
     @IBOutlet weak var lb_descricao: UILabel!
@@ -22,6 +23,7 @@ class ListImagesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.loadRegistro()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,6 +37,33 @@ class ListImagesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.img.image = ListImagesViewController.lista[indexPath.row].imagem
         
         return cell
+    }
+    
+    func loadRegistro() {
+        ListImagesViewController.lista = []
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RegistroModel")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject]
+            {
+                let nome = data.value(forKey: "nome") as! String
+                let descricao = data.value(forKey: "descricao") as! String
+                let image = data.value(forKey: "img") as? Data
+                
+                let r = Registro();
+                r.nome = nome;
+                r.descricao = descricao;
+                if (image != nil) {
+                    r.imagem = UIImage(data: image!);
+                }
+                ListImagesViewController.lista.append(r);
+                
+            }
+        } catch {
+            print("Failed")
+        }
     }
 
 }
