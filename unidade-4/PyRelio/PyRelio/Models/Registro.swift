@@ -10,6 +10,7 @@ import UIKit
 
 class Registro {
     
+    var id: String!
     var nome: String!
     var descricao: String!
     var imagem: UIImage!

@@ -39,6 +39,20 @@ class ListImagesViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        gotoModal(id: indexPath.row)
+    }
+    
+    func gotoModal(id: Int) {
+        Common.Global.IDREGISTROSELECTED = ListImagesViewController.lista[id].id;
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vcb = storyboard.instantiateViewController(withIdentifier: "ModalRegistro")
+
+        DispatchQueue.main.async {
+            self.present(vcb, animated: true, completion: nil)
+        }
+    }
+    
     func loadRegistro() {
         ListImagesViewController.lista = []
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -48,11 +62,13 @@ class ListImagesViewController: UIViewController, UITableViewDelegate, UITableVi
             let result = try context.fetch(request)
             for data in result as! [NSManagedObject]
             {
+                let id = data.value(forKey: "id") as! String
                 let nome = data.value(forKey: "nome") as! String
                 let descricao = data.value(forKey: "descricao") as! String
                 let image = data.value(forKey: "img") as? Data
                 
                 let r = Registro();
+                r.id = id;
                 r.nome = nome;
                 r.descricao = descricao;
                 if (image != nil) {
