@@ -66,8 +66,10 @@ class ProfileViewController: UIViewController, VNDocumentCameraViewControllerDel
 
     @IBAction func salvarRegistro(_ sender: Any) {
         let full = recognizedText.components(separatedBy: ",")
+        let uuid = UUID().uuidString
         
         let r = Registro();
+        r.id = uuid;
         r.nome = full[0];
         r.descricao = full[1];
         ListImagesViewController.lista.append(r);
@@ -78,7 +80,7 @@ class ProfileViewController: UIViewController, VNDocumentCameraViewControllerDel
         
         r.imagem = compresedImage;
         
-        self.persisteRegistro(nome: r.nome,descricao: r.descricao);
+        self.persisteRegistro(id: r.id, nome: r.nome,descricao: r.descricao);
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vcb = storyboard.instantiateViewController(withIdentifier: "ListaRegistros")
@@ -88,11 +90,12 @@ class ProfileViewController: UIViewController, VNDocumentCameraViewControllerDel
         }
     }
     
-    func persisteRegistro(nome: String!, descricao: String!) {
+    func persisteRegistro(id: String!, nome: String!, descricao: String!) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "RegistroModel", in: context)
         let nnewEntity = NSManagedObject(entity: entity!, insertInto: context)
         
+        nnewEntity.setValue(id, forKey: "id")
         nnewEntity.setValue(nome, forKey: "nome")
         nnewEntity.setValue(descricao, forKey: "descricao")
         nnewEntity.setValue(animalImage.pngData(), forKey: "img")
