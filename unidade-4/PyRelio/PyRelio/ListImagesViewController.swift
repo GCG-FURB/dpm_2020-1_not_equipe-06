@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class tableRegistroClass: UITableViewCell {
     @IBOutlet weak var lb_descricao: UILabel!
@@ -22,6 +23,7 @@ class ListImagesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.loadRegistro()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,22 +39,30 @@ class ListImagesViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        gotoRegistro(id: indexPath.row)
-    }
-    
-    func gotoRegistro(id: Int) {
-
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vcb = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
-
-        //seta id do job selecionado
-        Common.Global.IDJOBSELECTED = ids[id]
-        Common.Global.NAMEJOBSELECTED = values[id][0]
-        Common.Global.PERCENTJOBSELECTED = values[id][1]
-        
-        DispatchQueue.main.async {
-            self.present(vcb, animated: true, completion: nil)
+    func loadRegistro() {
+        ListImagesViewController.lista = []
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RegistroModel")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject]
+            {
+                let nome = data.value(forKey: "nome") as! String
+                let descricao = data.value(forKey: "descricao") as! String
+                let image = data.value(forKey: "img") as? Data
+                
+                let r = Registro();
+                r.nome = nome;
+                r.descricao = descricao;
+                if (image != nil) {
+                    r.imagem = UIImage(data: image!);
+                }
+                ListImagesViewController.lista.append(r);
+                
+            }
+        } catch {
+            print("Failed")
         }
     }
 
