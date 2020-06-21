@@ -10,13 +10,13 @@
 		65875B02247F365600495714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65875B01247F365600495714 /* AppDelegate.swift */; };
 		65875B04247F365600495714 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65875B03247F365600495714 /* SceneDelegate.swift */; };
 		65875B06247F365600495714 /* ListImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65875B05247F365600495714 /* ListImagesViewController.swift */; };
-		65875B08247F365600495714 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65875B07247F365600495714 /* SecondViewController.swift */; };
+		65875B08247F365600495714 /* EquipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65875B07247F365600495714 /* EquipeViewController.swift */; };
 		65875B0B247F365600495714 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65875B09247F365600495714 /* Main.storyboard */; };
 		65875B0E247F365600495714 /* PyRelio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65875B0C247F365600495714 /* PyRelio.xcdatamodeld */; };
 		65875B10247F365E00495714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65875B0F247F365E00495714 /* Assets.xcassets */; };
 		65875B13247F365E00495714 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65875B11247F365E00495714 /* LaunchScreen.storyboard */; };
-		65875B1D247F3E1300495714 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65875B1C247F3E1300495714 /* ImageViewController.swift */; };
 		65A6C5FE2488555400B02F6F /* Registro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A6C5FD2488555400B02F6F /* Registro.swift */; };
+		65BFE001249FEC8A00083527 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFE000249FEC8A00083527 /* ModalViewController.swift */; };
 		F1BE0F5424965863000DB455 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BE0F5324965863000DB455 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,14 +25,14 @@
 		65875B01247F365600495714 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65875B03247F365600495714 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		65875B05247F365600495714 /* ListImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListImagesViewController.swift; sourceTree = "<group>"; };
-		65875B07247F365600495714 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		65875B07247F365600495714 /* EquipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipeViewController.swift; sourceTree = "<group>"; };
 		65875B0A247F365600495714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65875B0D247F365600495714 /* PyRelio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PyRelio.xcdatamodel; sourceTree = "<group>"; };
 		65875B0F247F365E00495714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65875B12247F365E00495714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65875B14247F365E00495714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65875B1C247F3E1300495714 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		65A6C5FD2488555400B02F6F /* Registro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro.swift; sourceTree = "<group>"; };
+		65BFE000249FEC8A00083527 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		F1BE0F5324965863000DB455 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,13 +71,13 @@
 				65875B03247F365600495714 /* SceneDelegate.swift */,
 				65875B05247F365600495714 /* ListImagesViewController.swift */,
 				F1BE0F5324965863000DB455 /* CameraViewController.swift */,
-				65875B07247F365600495714 /* SecondViewController.swift */,
+				65875B07247F365600495714 /* EquipeViewController.swift */,
+				65BFE000249FEC8A00083527 /* ModalViewController.swift */,
 				65875B09247F365600495714 /* Main.storyboard */,
 				65875B0F247F365E00495714 /* Assets.xcassets */,
 				65875B11247F365E00495714 /* LaunchScreen.storyboard */,
 				65875B14247F365E00495714 /* Info.plist */,
 				65875B0C247F365600495714 /* PyRelio.xcdatamodeld */,
-				65875B1C247F3E1300495714 /* ImageViewController.swift */,
 			);
 			path = PyRelio;
 			sourceTree = "<group>";
@@ -161,13 +161,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65875B08247F365600495714 /* SecondViewController.swift in Sources */,
+				65BFE001249FEC8A00083527 /* ModalViewController.swift in Sources */,
+				65875B08247F365600495714 /* EquipeViewController.swift in Sources */,
 				65875B06247F365600495714 /* ListImagesViewController.swift in Sources */,
 				65875B02247F365600495714 /* AppDelegate.swift in Sources */,
 				65875B04247F365600495714 /* SceneDelegate.swift in Sources */,
 				65A6C5FE2488555400B02F6F /* Registro.swift in Sources */,
 				F1BE0F5424965863000DB455 /* CameraViewController.swift in Sources */,
-				65875B1D247F3E1300495714 /* ImageViewController.swift in Sources */,
 				65875B0E247F365600495714 /* PyRelio.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

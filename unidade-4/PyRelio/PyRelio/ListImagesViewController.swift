@@ -36,6 +36,25 @@ class ListImagesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        gotoRegistro(id: indexPath.row)
+    }
+    
+    func gotoRegistro(id: Int) {
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vcb = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+
+        //seta id do job selecionado
+        Common.Global.IDJOBSELECTED = ids[id]
+        Common.Global.NAMEJOBSELECTED = values[id][0]
+        Common.Global.PERCENTJOBSELECTED = values[id][1]
+        
+        DispatchQueue.main.async {
+            self.present(vcb, animated: true, completion: nil)
+        }
+    }
 
 }
 
