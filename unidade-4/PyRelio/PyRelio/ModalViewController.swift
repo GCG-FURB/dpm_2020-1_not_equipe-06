@@ -18,7 +18,7 @@ class ModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        self.loadRegistro(p_id: Common.Global.IDREGISTROSELECTED)
     }
 
     @IBAction func gotoBack(_ sender: Any) {

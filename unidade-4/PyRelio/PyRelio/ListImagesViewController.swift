@@ -44,12 +44,13 @@ class ListImagesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func gotoModal(id: Int) {
+        self.loadRegistro()
         Common.Global.IDREGISTROSELECTED = ListImagesViewController.lista[id].id;
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vcb = storyboard.instantiateViewController(withIdentifier: "ModalRegistro")
 
         DispatchQueue.main.async {
-            self.present(vcb, animated: true, completion: nil)
+            self.present(vcb, animated: false, completion: nil)
         }
     }
     
